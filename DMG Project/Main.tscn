@@ -146,7 +146,7 @@ texture = ExtResource("1_fanqe")
 
 [node name="RigidBody2D" parent="." instance=ExtResource("6_202mp")]
 z_index = 1
-position = Vector2(487, -96)
+position = Vector2(564, -91)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(584, 551)
