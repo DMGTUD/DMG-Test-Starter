@@ -1,0 +1,115 @@
+[gd_scene load_steps=6 format=3 uid="uid://douti3gvb8i45"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_c1ysl"]
+[ext_resource type="Texture2D" uid="uid://qorf00uxas2n" path="res://mordor.png" id="1_fanqe"]
+[ext_resource type="Texture2D" uid="uid://bysu7tx10cvnl" path="res://dragon.webp" id="2_wf73x"]
+[ext_resource type="Texture2D" uid="uid://35a1jvl4cap6" path="res://roll.webp" id="3_7l8yi"]
+[ext_resource type="Script" path="res://Control.gd" id="4_8xj4k"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_c1ysl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 39.0
+script = ExtResource("4_8xj4k")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+offset_right = 320.0
+offset_bottom = 640.0
+scale = Vector2(3.6, 1.04)
+
+[node name="ColorRect" type="ColorRect" parent="Control/MarginContainer"]
+layout_mode = 2
+color = Color(0.368627, 0.411765, 0.419608, 1)
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control"]
+offset_left = 399.0
+offset_top = 15.0
+offset_right = 596.0
+offset_bottom = 90.0
+scale = Vector2(1.92, 1.92)
+
+[node name="Label" type="Label" parent="Control/MarginContainer2"]
+layout_mode = 2
+text = "A dragon approaches.
+Quick, Wizard of Old,
+throw a spell!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control"]
+offset_left = 910.0
+offset_top = 158.0
+offset_right = 1107.0
+offset_bottom = 233.0
+
+[node name="Label" type="Label" parent="Control/MarginContainer3"]
+layout_mode = 2
+text = "Let luck decide"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="MarginContainer6" type="MarginContainer" parent="Control"]
+offset_left = 910.0
+offset_top = 282.0
+offset_right = 1107.0
+offset_bottom = 357.0
+
+[node name="Diceroll" type="Label" parent="Control/MarginContainer6"]
+layout_mode = 2
+text = "Num"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="MarginContainer4" type="MarginContainer" parent="Control"]
+offset_left = 62.0
+offset_top = 158.0
+offset_right = 259.0
+offset_bottom = 233.0
+
+[node name="Label" type="Label" parent="Control/MarginContainer4"]
+layout_mode = 2
+text = "I'll choose my power"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="MarginContainer5" type="MarginContainer" parent="Control"]
+offset_left = 959.0
+offset_top = 211.0
+offset_right = 1479.0
+offset_bottom = 731.0
+scale = Vector2(0.18, 0.18)
+
+[node name="Button" type="Button" parent="Control/MarginContainer5"]
+layout_mode = 2
+icon = ExtResource("3_7l8yi")
+
+[node name="HSlider" type="HSlider" parent="Control"]
+offset_left = 147.0
+offset_top = 231.0
+offset_right = 155.0
+offset_bottom = 247.0
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+
+[node name="Mordor" type="Sprite2D" parent="."]
+position = Vector2(571, 279)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("1_fanqe")
+
+[node name="Dragon" type="Sprite2D" parent="."]
+position = Vector2(584, 551)
+scale = Vector2(1, 0.413296)
+texture = ExtResource("2_wf73x")
+
+[connection signal="pressed" from="Control/MarginContainer5/Button" to="Control" method="_on_button_pressed"]
