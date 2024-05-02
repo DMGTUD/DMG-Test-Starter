@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://douti3gvb8i45"]
+[gd_scene load_steps=9 format=3 uid="uid://douti3gvb8i45"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_c1ysl"]
 [ext_resource type="Texture2D" uid="uid://qorf00uxas2n" path="res://mordor.png" id="1_fanqe"]
 [ext_resource type="Texture2D" uid="uid://bysu7tx10cvnl" path="res://dragon.webp" id="2_wf73x"]
 [ext_resource type="Texture2D" uid="uid://35a1jvl4cap6" path="res://roll.webp" id="3_7l8yi"]
 [ext_resource type="Script" path="res://Control.gd" id="4_8xj4k"]
+[ext_resource type="PackedScene" uid="uid://b86tcdd81xyc2" path="res://FireballPref.tscn" id="6_202mp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmeq7"]
+size = Vector2(618.265, 441.29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g34d1"]
+size = Vector2(619.262, 291.929)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_c1ysl")
@@ -98,6 +105,7 @@ scale = Vector2(0.18, 0.18)
 [node name="Button" type="Button" parent="Control/MarginContainer5"]
 layout_mode = 2
 icon = ExtResource("3_7l8yi")
+flat = true
 
 [node name="SliderNum" type="Label" parent="Control"]
 layout_mode = 2
@@ -105,6 +113,7 @@ offset_left = -102.0
 offset_top = 245.0
 offset_right = 418.0
 offset_bottom = 268.0
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -135,9 +144,27 @@ position = Vector2(571, 279)
 scale = Vector2(0.22, 0.22)
 texture = ExtResource("1_fanqe")
 
-[node name="Dragon" type="Sprite2D" parent="."]
+[node name="RigidBody2D" parent="." instance=ExtResource("6_202mp")]
+z_index = 1
+position = Vector2(487, -96)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(584, 551)
 scale = Vector2(1, 0.413296)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(27, 21.0455)
+scale = Vector2(1.00281, 0.994587)
+shape = SubResource("RectangleShape2D_dmeq7")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D/CollisionShape2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/CollisionShape2D/Area2D"]
+position = Vector2(0.498535, 68.8513)
+shape = SubResource("RectangleShape2D_g34d1")
+
+[node name="Dragon" type="Sprite2D" parent="StaticBody2D"]
 texture = ExtResource("2_wf73x")
 
 [connection signal="pressed" from="Control/MarginContainer5/Button" to="Control" method="_on_button_pressed"]

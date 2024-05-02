@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b86tcdd81xyc2"]
+
+[ext_resource type="Texture2D" uid="uid://c4dvmroyuhs3u" path="res://fireball.webp" id="1_e2xr0"]
+[ext_resource type="Script" path="res://FireballPref.gd" id="1_undvg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jviit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x323d"]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_undvg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.555, 3.555)
+shape = SubResource("RectangleShape2D_jviit")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="Area2D" type="Area2D" parent="CollisionShape2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Area2D"]
+shape = SubResource("RectangleShape2D_x323d")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D/Area2D/CollisionShape2D"]
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("1_e2xr0")
+
+[connection signal="area_entered" from="CollisionShape2D/Area2D" to="." method="_on_area_2d_area_entered"]
